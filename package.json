@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-build-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "docker build -t kuyoonjo/nodejs-build-tools .",
+    "push": "docker push kuyoonjo/nodejs-build-tools:latest"
+  },
+  "author": "Yu Chen",
+  "license": "ISC"
+}

@@ -18,4 +18,4 @@ RUN echo "source /.nvm/bash_completion" >> /init.sh
 RUN echo "source scl_source enable devtoolset-7" >> /init.sh
 
 RUN yum install -y make
-RUN bash -c 'source /init.sh && cmake-js 2>&1 > /dev/null || true'
+RUN bash -c 'source /init.sh && cmake-js 2>&1 > /dev/null || true && ELECTRON_MIRROR=http://npm.taobao.org/mirrors/atom-shell cmake-js --runtime=electron --runtime-version=5.0.10 2>&1 > /dev/null || true'

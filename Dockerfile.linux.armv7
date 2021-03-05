@@ -1,0 +1,16 @@
+FROM dockcross/linux-armv7a
+
+LABEL Author="Yu Chen"
+
+RUN git clone -b v0.37.2 --single-branch https://github.com/nvm-sh/nvm.git ~/.nvm
+RUN bash -c 'export NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node && \
+                source ~/.nvm/nvm.sh && \
+                source ~/.nvm/bash_completion && \
+                nvm install 12.16.0 && \
+                npm i -g node-gyp cmake-js --registry=https://r.npm.taobao.org'
+
+RUN echo "source ~/.nvm/nvm.sh" >> /init.sh
+RUN echo "source ~/.nvm/bash_completion" >> /init.sh
+
+RUN bash -c 'source /init.sh && cmake-js 2>&1 > /dev/null || true && ELECTRON_MIRROR=http://npm.taobao.org/mirrors/atom-shell cmake-js --runtime=electron --runtime-version=5.0.10 2>&1 > /dev/null || true'
+ENV DEFAULT_DOCKCROSS_IMAGE kuyoonjo/nodejs-build-tools-linux-armv7

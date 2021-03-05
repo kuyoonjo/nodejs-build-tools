@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "docker build -t kuyoonjo/nodejs-build-tools .",
+    "build:gcc:armv7": "docker buildx build -t kuyoonjo/nodejs-build-tools-armv7 --platform linux/arm/v7 --load -f Dockerfile.arch .",
+    "build:gcc:arm64": "docker buildx build -t kuyoonjo/nodejs-build-tools-arm64 --platform linux/arm64 --load -f Dockerfile.arch .",
+    "build:linux:armv7": "docker build -t kuyoonjo/nodejs-build-tools-linux-armv7 -f Dockerfile.linux.armv7 .",
     "push": "docker push kuyoonjo/nodejs-build-tools:latest"
   },
   "author": "Yu Chen",
